@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Address Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #28a745; /* Green background */
+      color: #333; /* Dark text */
+    }
+    .container {
+      background-color: #fff; /* Cream color theme */
+      padding: 20px;
+      border-radius: 10px;
+      margin: 50px auto;
+      max-width: 600px;
+    }
+    .form-group label {
+      color: #28a745; /* Green text */
+    }
+    .form-control {
+      background-color: #fff; /* White background */
+    }
+    .btn-primary {
+      background-color: #28a745; /* Green button */
+      border-color: #28a745;
+    }
+    .btn-primary:hover {
+      background-color: #218838; /* Darker green on hover */
+      border-color: #1e7e34;
+    }
+    #bgcolor{
+        background-color: #1e7e34;
+    }
+    #textcolor,#home,#logout{
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+    <nav id="bgcolor" class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a id="textcolor" class=" navbar-brand font-weight-bold " href="#">EduCycle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a id="home" class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="logout" class="nav-link" href="login.html">Logout</a>
+            </li>
+            <!-- Add more navigation items as needed -->
+          </ul>
+        </div>
+      </nav>
+
+  <div class="container">
+    <h2 class="text-center text-white mb-4">Enter Your Address</h2>
+    <form id="addressForm">
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" class="form-control" id="fullName" placeholder="Enter your full name">
+      </div>
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" class="form-control" id="phoneNumber" placeholder="Enter your phone number">
+      </div>
+      <div class="form-group">
+        <label for="pincode">Pincode</label>
+        <input type="text" class="form-control" id="pincode" placeholder="Enter your pincode">
+      </div>
+      <button type="button" class="btn btn-primary btn-block mb-3">Use My Location</button>
+      <div class="form-group">
+        <label for="state">State</label>
+        <input type="text" class="form-control" id="state" placeholder="Enter your state">
+      </div>
+      <div class="form-group">
+        <label for="city">City</label>
+        <input type="text" class="form-control" id="city" placeholder="Enter your city">
+      </div>
+      <div class="form-group">
+        <label for="houseNumber">House Number</label>
+        <input type="text" class="form-control" id="houseNumber" placeholder="Enter your house number">
+      </div>
+      <div class="form-group">
+        <label for="street">Street</label>
+        <input type="text" class="form-control" id="street" placeholder="Enter your street">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Submit</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // Function to handle form submission
+    document.getElementById("addressForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the form from submitting
+
+      // Display an alert message
+      alert("Request successful!");
+    });
+  </script>
+
+</body>
+</html>
+

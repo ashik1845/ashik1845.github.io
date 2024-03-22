@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes Sharing - Edu Cycle</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #28a745; /* Cream background */
+      color: #333; /* Dark text */
+    }
+    .notes-container {
+      max-width: 600px;
+      margin: 50px auto;
+      text-align: center;
+    }
+    .notes-heading {
+        color: #fff;
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+    .pdf-container {
+      margin-bottom: 20px;
+    }
+    .uploader-details {
+      margin-bottom: 20px;
+    }
+    .button-container {
+      display: flex;
+      justify-content: center;
+    }
+    .request-btn,
+    .upload-btn {
+      margin: 0 10px;
+    }
+    .request-btn {
+      background-color: #02310d; /* Green button */
+      border-color: #28a745;
+    }
+    .request-btn:hover {
+      background-color: #0e4e1c; /* Darker green on hover */
+      border-color: #1e7e34;
+    }
+    .upload-btn {
+      background-color: #007bff; /* Blue button */
+      border-color: #007bff;
+    }
+    .upload-btn:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+      border-color: #0056b3;
+    }
+    #bgcolor{
+        background-color: #1e7e34;
+    }
+    #textcolor,#home,#logout,.btn{
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+    <nav id="bgcolor" class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a id="textcolor" class=" navbar-brand font-weight-bold " href="#">EduCycle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a id="home" class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="logout" class="nav-link" href="login.html">Logout</a>
+            </li>
+            <!-- Add more navigation items as needed -->
+          </ul>
+        </div>
+      </nav>
+
+
+  <div class="notes-container">
+    <h2 class="notes-heading pt-4">Notes</h2>
+    
+    <!-- PDF Container -->
+    <div class="pdf-container">
+      <!-- Embed PDF here -->
+      <iframe src="https://jmp.sh/s/J9joOit3uDwpiuqDBwgx" width="80%" height="300px"></iframe>
+    </div>
+
+    <!-- Uploader Details -->
+    <div class="uploader-details">
+      <p>Uploaded by: Sahana</p>
+      <p>College: KCG College of Technology</p>
+      <p>Year: 2024</p>
+    </div>
+
+    <!-- Button Container -->
+    <div class="button-container">
+      <a href="address.html" class="btn btn-lg request-btn font-weight-bold">Request</a>
+      <a href="upload.html" class="btn btn-lg upload-btn font-weight-bold">Upload</a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

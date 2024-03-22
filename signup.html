@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up - Edu Cycle</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #28a745; /* Cream background */
+      color: #333; /* Dark text */
+    }
+    .signup-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #fff; /* White background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .signup-btn {
+      background-color: #28a745; /* Green button */
+      border-color: #28a745;
+      color: #fff;
+      font-weight: 500;
+    }
+    .signup-btn:hover {
+      background-color: #218838; /* Darker green on hover */
+      border-color: #1e7e34;
+    }
+    .login-link,.learn-link {
+      color: #28a745; /* Green link color */
+    }
+    .login-link:hover,.learn-link:hover {
+      color: #1e7e34; /* Darker green on hover */
+    }
+    .color{
+        color: #1e7e34;
+        font-weight: 500;
+    }
+    .text-color{
+        color: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="area" >
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+</ul>
+</div >
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="signup-container">
+          <p class="color text-center mb-2">Join Edu Cycle, empower education!</p>
+          <p class="color text-center mb-4">Create your account now.</p>
+          <form id="signup-form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="emailPhone" placeholder="Email or Phone Number" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" id="address" placeholder="Address" required>
+            </div>
+            <button type="submit" class="btn btn-lg btn-block signup-btn">Sign Up</button>
+          </form>
+          <div class="text-center mt-3">
+            <p class="text-color">Already have an account? <a href="login.html" class="login-link font-weight-bold">Log In</a></p>
+          </div>
+          <div class="text-center mt-2">
+            <p class="text-color">We need permission for the service you use <br><a href="#" class="learn-link font-weight-bold">Learn More </a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyBtX5Z4cmjNe0F8ggLsIHbig4xGXolHedc",
+    authDomain: "educycle-2b6ef.firebaseapp.com",
+    databaseURL: "https://educycle-2b6ef-default-rtdb.firebaseio.com",
+    projectId: "educycle-2b6ef",
+    storageBucket: "educycle-2b6ef.appspot.com",
+    messagingSenderId: "325194483127",
+    appId: "1:325194483127:web:9a6534c6df05492fe05432",
+    measurementId: "G-WHNBMPNFE5"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    document.getElementById("signup-form").addEventListener('submit', function(e) {
+      e.preventDefault();
+      const emailPhone = document.getElementById("emailPhone").value;
+      const fullname = document.getElementById("fullName").value;
+      const password = document.getElementById("password").value;
+      const address = document.getElementById("address").value;
+
+      // Store login details in Firebase Realtime Database
+      set(ref(db, 'users/' + name), {
+        emailPhone: emailPhone,
+        fullname: fullname,
+        password: password,
+        address: address
+      }).then(() => {
+        console.log("Login Successful");
+        // Redirect to the welcome page after successful login
+        window.location.href = 'welcome.html';
+      }).catch((error) => {
+        console.error("Error logging in:", error);
+      });
+    });
+  </script>
+</body>
+</html>

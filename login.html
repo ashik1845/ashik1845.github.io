@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Edu Cycle</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #28a745; /* Cream background */
+      color: #333; /* Dark text */
+    }
+    .login-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #fff; /* White background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .login-btn {
+        color: #fff;
+      background-color: #28a745; /* Green button */
+      border-color: #28a745;
+    }
+    .login-btn:hover {
+      background-color: #218838; /* Darker green on hover */
+      border-color: #1e7e34;
+    }
+    .signup-link {
+      color: #28a745; /* Green link color */
+    }
+    .signup-link:hover {
+      color: #1e7e34; /* Darker green on hover */
+    }
+    .forgot {
+        color: #1e7e34;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="area">
+    <ul class="circles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mx-auto">
+        <div class="login-container">
+          <h2 class="text-center mb-4">Log In</h2>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            </div>
+            <button type="submit" class="btn btn-lg btn-block login-btn font-weight-bold" id="submit">Log In</button>
+            <div class="text-center mt-3">
+              <a href="forgotpassword.html" class="forgot">Forgot password?</a>
+            </div>
+          </form>
+          <div class="text-center mt-3">
+            <p>Don't have an account? <a href="signup.html" class="signup-link">Sign Up</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+    apiKey: "AIzaSyBtX5Z4cmjNe0F8ggLsIHbig4xGXolHedc",
+    authDomain: "educycle-2b6ef.firebaseapp.com",
+    databaseURL: "https://educycle-2b6ef-default-rtdb.firebaseio.com",
+    projectId: "educycle-2b6ef",
+    storageBucket: "educycle-2b6ef.appspot.com",
+    messagingSenderId: "325194483127",
+    appId: "1:325194483127:web:9a6534c6df05492fe05432",
+    measurementId: "G-WHNBMPNFE5"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+
+    document.getElementById("submit").addEventListener('click', function(e) {
+      e.preventDefault();
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const password = document.getElementById("password").value;
+
+      // Store login details in Firebase Realtime Database
+      set(ref(db, 'users/' + name), {
+        name: name,
+        phone: phone,
+        password: password
+      }).then(() => {
+        console.log("Login Successful");
+        // Redirect to the welcome page after successful login
+        window.location.href = 'welcome.html';
+      }).catch((error) => {
+        console.error("Error logging in:", error);
+      });
+    });
+  </script>
+</body>
+</html>

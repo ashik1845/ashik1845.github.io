@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Material Form - Edu Cycle</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  
+  <!-- Custom styles -->
+  <style>
+    body {
+      background-color: #28a745; /* Cream background */
+      color: #333; /* Dark text */
+    }
+    .upload-container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #fff; /* White background */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .form-group{
+        font-weight: 500;
+    }
+    .file-input {
+      margin-bottom: 20px;
+    }
+    .btn-primary {
+      background-color: #28a745; /* Green button */
+      border-color: #28a745;
+    }
+    .btn-primary:hover {
+      background-color: #218838; /* Darker green on hover */
+      border-color: #1e7e34;
+    }
+    #color,.form-group{
+        color: #1e7e34;
+    }
+    #bgcolor{
+        background-color: #1e7e34;
+    }
+    #textcolor,#home,#logout{
+        color: #fff;
+    }
+  </style>
+</head>
+<body>
+    <nav id="bgcolor" class="navbar navbar-expand-lg navbar-light fixed-top">
+        <a id="textcolor" class=" navbar-brand font-weight-bold " href="#">EduCycle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a id="home" class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="logout" class="nav-link" href="login.html">Logout</a>
+            </li>
+            <!-- Add more navigation items as needed -->
+          </ul>
+        </div>
+      </nav>
+
+
+  <div class="upload-container">
+    <h2 id="color" class="text-center mb-4">Upload Material</h2>
+
+    <!-- File Upload Input -->
+    <div class="custom-file file-input">
+      <input type="file" class="custom-file-input" id="file-input" accept=".pdf">
+      <label class="custom-file-label" for="file-input">Choose file</label>
+    </div>
+
+    <!-- File Name Display -->
+    <div class="file-name" id="file-name"></div>
+
+    <!-- Material Upload Form -->
+    <form id="material-form">
+      <div class="form-group">
+        <label for="material-name">Name of the Material</label>
+        <input type="text" class="form-control" id="material-name" required>
+      </div>
+      <div class="form-group">
+        <label for="chapter-number">Chapter Number</label>
+        <input type="text" class="form-control" id="chapter-number" required>
+      </div>
+      <div class="form-group">
+        <label for="page-number">Number of Pages</label>
+        <input type="number" class="form-control" id="page-number" required>
+      </div>
+      <div class="form-group">
+        <label for="institute-name">Name of Your Institute</label>
+        <input type="text" class="form-control" id="institute-name" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Upload Material</button>
+    </form>
+  </div>
+
+  <!-- Bootstrap JS and dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Firebase JavaScript SDK -->
+ 
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-database.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js";
+  
+    // Initialize Firebase
+    const firebaseConfig = {
+    apiKey: "AIzaSyBtX5Z4cmjNe0F8ggLsIHbig4xGXolHedc",
+    authDomain: "educycle-2b6ef.firebaseapp.com",
+    databaseURL: "https://educycle-2b6ef-default-rtdb.firebaseio.com",
+    projectId: "educycle-2b6ef",
+    storageBucket: "educycle-2b6ef.appspot.com",
+    messagingSenderId: "325194483127",
+    appId: "1:325194483127:web:9a6534c6df05492fe05432",
+    measurementId: "G-WHNBMPNFE5"
+  };
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getDatabase(app);
+  
+    // File input change event listener
+    document.getElementById('file-input').addEventListener('change', function(event) {
+      var fileName = event.target.files[0].name;
+      document.getElementById('file-name').innerHTML = 'Selected File: ' + fileName;
+    });
+  
+    // Material form submit event listener
+    document.getElementById('material-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+  
+      const material = document.getElementById("material-name").value;
+      const chapterNumber = document.getElementById("chapter-number").value;
+      const pageNumber = document.getElementById("page-number").value;
+      const instituteName = document.getElementById("institute-name").value;
+      const fileName = document.getElementById("file-name").textContent; // Use textContent to get the text
+  
+      // Store material details in Firebase Realtime Database
+      set(ref(db, 'materials/' + Date.now()), {
+        materialName: material,
+        chapterNumber: chapterNumber,
+        pageNumber: pageNumber,
+        instituteName: instituteName,
+        fileName: fileName
+      }).then(() => {
+        // Redirect to the welcome page after successful material upload
+        window.location.href = 'uploadsuccess.html';
+      }).catch((error) => {
+        console.error("Error uploading material:", error);
+      });
+    });
+  </script>
+  
+</body>
+</html>
